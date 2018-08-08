@@ -19,7 +19,7 @@
             [status-im.utils.datetime :as datetime]
             [status-im.utils.money :as money]
             [status-im.ui.screens.wallet.db :as wallet.db]
-            [status-im.ui.screens.wallet.choose-recipient.events :as choose-recipient.events]
+            [status-im.ui.screens.wallet.choose-recipient.models :as choose-recipient.models]
             [status-im.wallet.transactions :as wallet.transactions]
             [status-im.ui.screens.navigation :as navigation]))
 
@@ -228,7 +228,7 @@
                (assoc-in [:wallet :send-transaction :amount] (money/formatted->internal value symbol decimals))
                (assoc-in [:wallet :send-transaction :amount-text] amount)
                (assoc-in [:wallet :send-transaction :amount-error] error)
-               (choose-recipient.events/fill-request-details
+               (choose-recipient.models/fill-request-details
                 (transaction-details recipient-contact symbol))
                (update-in [:wallet :send-transaction] dissoc :id :password :wrong-password?)
                (navigation/navigate-to

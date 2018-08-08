@@ -2,7 +2,7 @@
   (:require [status-im.ui.screens.accounts.models :as accounts.models]
             [status-im.utils.handlers :as handlers]
             [status-im.utils.handlers-macro :as handlers-macro]
-            [status-im.ui.screens.wallet.events :as wallet.events]))
+            [status-im.ui.screens.wallet.models :as wallet.models]))
 
 (handlers/register-handler-fx
  :wallet.settings/set-currency
@@ -11,4 +11,4 @@
          new-settings (assoc-in settings [:wallet :currency] currency)]
      (handlers-macro/merge-fx cofx
                               (accounts.models/update-settings new-settings)
-                              (wallet.events/update-wallet)))))
+                              (wallet.models/update-wallet)))))
